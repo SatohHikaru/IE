@@ -1,8 +1,10 @@
 package Page;
 
-import Model.User;
+import Model.UserModel;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+
+import static Page.BasePage.getDataFromJsonFile;
 
 public class PersionalInfomationPage {
 
@@ -20,17 +22,18 @@ public class PersionalInfomationPage {
 
     public void fillInfoFunction(WebDriver driver){
 
-        User user = new User();
+        UserModel userModel;
+        userModel =getDataFromJsonFile("UserModel.json", "quangtestauto");
 
-        driver.findElement(firstnameXpath).sendKeys(user.getFirstName());
+        driver.findElement(firstnameXpath).sendKeys(userModel.getFirstName());
 
-        driver.findElement(middlenameXpath).sendKeys(user.getMiddleName());
-        driver.findElement(lastnameXpath).sendKeys(user.getLastName());
-        driver.findElement(suffixXpath).sendKeys(user.getSuffix());
+        driver.findElement(middlenameXpath).sendKeys(userModel.getMiddleName());
+        driver.findElement(lastnameXpath).sendKeys(userModel.getLastName());
+        driver.findElement(suffixXpath).sendKeys(userModel.getSuffix());
 
-        driver.findElement(firstinputDateXpath).sendKeys(user.getMonth());
-        driver.findElement(secinputDateXpath).sendKeys(user.getDay());
-        driver.findElement(lastinputDateXpath).sendKeys(user.getYear());
+        driver.findElement(firstinputDateXpath).sendKeys(userModel.getMonth());
+        driver.findElement(secinputDateXpath).sendKeys(userModel.getDay());
+        driver.findElement(lastinputDateXpath).sendKeys(userModel.getYear());
 
         driver.findElement(SSNradioboxXpath).click();
         driver.findElement(printbuttonXpath).click();

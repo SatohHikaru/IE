@@ -1,20 +1,24 @@
 package Page;
-import Model.User;
+import Model.UserModel;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class Login
+import static Page.BasePage.getDataFromJsonFile;
+
+public class LoginPage
 {
+
     private By usernameXpath = By.xpath("//*[@id=\"uxTextLogin\"]");
     private By passwordXpath = By.xpath("//*[@id=\"uxTextPass\"]");
     private By loginButtonXpath= By.xpath("//*[@id=\"uxButtonLogin\"]");
 
     public void loginFunction(WebDriver driver){
 
-        User user = new User();
-        driver.findElement(usernameXpath).sendKeys(user.getUserName());
-        driver.findElement(passwordXpath).sendKeys(user.getPassword());
+        UserModel userModel;
+        userModel =getDataFromJsonFile("UserModel.json", "quangtestauto");
+        driver.findElement(usernameXpath).sendKeys(userModel.getUserName());
+        driver.findElement(passwordXpath).sendKeys(userModel.getPassword());
         driver.findElement(loginButtonXpath).click();
 
     }
