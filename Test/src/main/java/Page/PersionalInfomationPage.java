@@ -4,9 +4,10 @@ import Model.UserModel;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-import static Page.BasePage.getDataFromJsonFile;
+import static Helper.Helper.getDataFromJsonFile;
 
-public class PersionalInfomationPage {
+public class PersionalInfomationPage extends BasePage{
+
 
     private By firstnameXpath = By.xpath("//*[@id=\"ctl_insured_first_name\"]");
     private By middlenameXpath = By.xpath("//*[@id=\"MainPane\"]/table/tbody/tr[3]/td[3]/div/input");
@@ -20,10 +21,7 @@ public class PersionalInfomationPage {
     private By SSNradioboxXpath = By.xpath("//*[@id=\"ctl_insured_sw_1_1\"]");
     private By printbuttonXpath = By.xpath("//*[@id=\"buttonPrint\"]");
 
-    public void fillInfoFunction(WebDriver driver){
-
-        UserModel userModel;
-        userModel =getDataFromJsonFile("UserModel.json", "quangtestauto");
+    public void fillInfoFunction(UserModel userModel){
 
         driver.findElement(firstnameXpath).sendKeys(userModel.getFirstName());
 
