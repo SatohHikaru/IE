@@ -26,12 +26,8 @@ public class TestRun extends BaseTest {
         //Create Function in Pending page
         pendingpage.createNewFunction();
 
-        //Switch focus when have new tab opened
-        pendingpage.switchFocusNewTab();
-
         //Fill information into inputs
         persionalinfomationpage.fillInfoFunction(getDataFromJsonFile("User.json", "quangtestauto"));
-        ExtentHTMLReporter();
     }
 
 }

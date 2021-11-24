@@ -21,7 +21,7 @@ public class BaseTest extends BasePage {
 
     @AfterTest
     public static void close(){
-        flushHTML();
+        extent.flush();
         driver.close();
     }
 

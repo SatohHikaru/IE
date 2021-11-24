@@ -1,10 +1,10 @@
 package Page;
 
 import Model.UserModel;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-
-import static Helper.Helper.getDataFromJsonFile;
+import java.util.concurrent.TimeUnit;
 
 public class PersionalInfomationPage extends BasePage{
 
@@ -21,6 +21,8 @@ public class PersionalInfomationPage extends BasePage{
     private By SSNradioboxXpath = By.xpath("//*[@id=\"ctl_insured_sw_1_1\"]");
     private By printbuttonXpath = By.xpath("//*[@id=\"buttonPrint\"]");
 
+    private By CheckPopupApear = By.xpath("//*[@id=\"disableDiv\"]");
+
     public void fillInfoFunction(UserModel userModel){
 
         driver.findElement(firstnameXpath).sendKeys(userModel.getFirstName());
@@ -35,6 +37,19 @@ public class PersionalInfomationPage extends BasePage{
 
         driver.findElement(SSNradioboxXpath).click();
         driver.findElement(printbuttonXpath).click();
+
+        driver.manage().timeouts().setScriptTimeout(30, TimeUnit.SECONDS);
+
+        ExtentHTMLReporter();
+        ExtentTest logger= extent.createTest("Test Popup PDF Image");
+        logger.log(Status.INFO,"Popup PDF Image is displayed");
+
+        if(driver.findElement(CheckPopupApear).isDisplayed()){
+            logger.log(Status.PASS,"Fill Info Successfully");
+        }else{
+            logger.log(Status.FAIL,"Fail to Fill Info In Personal Information Page");
+        }
+
 
     }
 }
