@@ -4,6 +4,8 @@ import Page.*;
 import Helper.*;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
+
 import static Helper.Helper.getDataFromJsonFile;
 
 public class TestRun extends BaseTest {
@@ -15,19 +17,19 @@ public class TestRun extends BaseTest {
     private static PersionalInfomationPage persionalinfomationpage = new PersionalInfomationPage();
 
     @Test
-    void popupPDFImageTestcase(){
+    void popupPDFImageTestcase() throws IOException {
 
         //Enter Main page
         basepage.enterMainPage();
 
         //LoginPage To page
-        loginPage.loginFunction(getDataFromJsonFile("User.json", "quangtestauto"));
+        loginPage.loginFunction(getDataFromJsonFile("User.json", "quangtestauto1"));
 
-        //Create Function in Pending page
-        pendingpage.createNewFunction();
-
-        //Fill information into inputs
-        persionalinfomationpage.fillInfoFunction(getDataFromJsonFile("User.json", "quangtestauto"));
+//        //Create Function in Pending page
+//        pendingpage.createNewFunction();
+//
+//        //Fill information into inputs
+//        persionalinfomationpage.fillInfoFunction(getDataFromJsonFile("User.json", "quangtestauto"));
     }
 
 }

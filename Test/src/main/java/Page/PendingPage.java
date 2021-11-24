@@ -21,9 +21,7 @@ public class PendingPage extends BasePage {
         //Switch focus when have new tab opened
         switchFocusNewTab();
 
-        ExtentHTMLReporter();
-        ExtentTest logger= extent.createTest("Test Select Info in Pending Page");
-        logger.log(Status.INFO,"Select info in Pending Page");
+        ExtentHTMLReporter("Test Select Info in Pending Page","Select info in Pending Page");
 
         if(driver.findElement(CheckTitleXpath).getText().equals("Life Application for DC")){
             logger.log(Status.PASS,"Select Info Successfully");

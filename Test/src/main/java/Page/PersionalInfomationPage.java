@@ -38,12 +38,8 @@ public class PersionalInfomationPage extends BasePage{
         driver.findElement(SSNradioboxXpath).click();
         driver.findElement(printbuttonXpath).click();
 
-        driver.manage().timeouts().setScriptTimeout(30, TimeUnit.SECONDS);
 
-        ExtentHTMLReporter();
-        ExtentTest logger= extent.createTest("Test Popup PDF Image");
-        logger.log(Status.INFO,"Popup PDF Image is displayed");
-
+        ExtentHTMLReporter("Test Popup PDF Image","Popup PDF Image is displayed");
         if(driver.findElement(CheckPopupApear).isDisplayed()){
             logger.log(Status.PASS,"Fill Info Successfully");
         }else{
