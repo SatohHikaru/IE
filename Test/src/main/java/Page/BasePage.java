@@ -1,27 +1,24 @@
 package Page;
 
-import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.Status;
-import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
-import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
+import Helper.*;
+import com.aventstack.extentreports.*;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import Assertion.*;
 
-import java.io.File;
 import java.io.IOException;
-import java.time.LocalDateTime;
-
 
 public class BasePage {
 
-    public static WebDriver driver;
     public static ExtentTest logger;
-    public static ExtentHtmlReporter reporter;
     public static ExtentReports extent = new ExtentReports();
-    public static AbstractAssertion As = new AbstractAssertion();
+    public static SoftAssertion softsasertion = new SoftAssertion();
+    public static WebDriver driver;
+    public static PageHelper pageHelper = new PageHelper();
+    public static LoginPage loginPage = new LoginPage();
+    public static BasePage basepage = new BasePage();
+    public static PendingPage pendingpage = new PendingPage();
+    public static PersionalInfomationPage persionalinfomationpage = new PersionalInfomationPage();
 
     public static void enterMainPage(){
        driver.get("https://applicintweb.com/ExamRightTrunk/Default.aspx");
@@ -37,23 +34,41 @@ public class BasePage {
         }
     }
 
-    public static void ExtentHTMLReporter(String testName,String info){
-        reporter = new ExtentHtmlReporter("C:\\Users\\NVVinh\\Desktop\\Auto Test Code\\IE\\Test\\src\\main\\resources\\Report\\Test.html");
-        extent.attachReporter(reporter);
-        logger= extent.createTest(testName);
-        logger.log(Status.INFO,info);
+    public static void logHTMLByURL(String linkURL) throws IOException {
+
+        String currentURL=driver.getCurrentUrl();
+        Status status = currentURL.equals(linkURL) ? Status.PASS : Status.FAIL ;
+
+        String message = status == Status.PASS ? "log Successfully" : "Log Fail";
+
+        softsasertion.assertEqual(currentURL,linkURL,message);
+
     }
 
-    public static String captureScreen() throws IOException {
-        TakesScreenshot ts= (TakesScreenshot) driver;
-        File src =ts.getScreenshotAs(OutputType.FILE);
-        String fileSave= "C:\\Users\\NVVinh\\Desktop\\Auto Test Code\\IE\\Test\\src\\main\\resources\\Report\\ImgLogTest\\test.png";
-        File finalDestination=new File(fileSave);
+    public static void logHTMLByText(String location, String text) throws IOException {
 
-        FileUtils.copyFile(src,finalDestination);
+        By CheckTitleXpath=By.xpath(location);
+        String CheckParagraph=driver.findElement(CheckTitleXpath).getText();
 
-        return fileSave;
+        Status status = CheckParagraph.equals(text) ? Status.PASS : Status.FAIL ;
+
+        String message = status == Status.PASS ? "log Successfully" : "Log Fail";
+
+        softsasertion.assertEqual(CheckParagraph,text,message);
+
     }
 
+    public static void logHTMLByDisplay (String location) throws IOException {
+
+        By CheckTitleXpath=By.xpath(location);
+        String CheckParagraph= Boolean.toString(driver.findElement(CheckTitleXpath).isDisplayed());
+
+        Status status = CheckParagraph.equals(CheckParagraph) ? Status.PASS : Status.FAIL ;
+
+        String message = status == Status.PASS ? "log Successfully" : "Log Fail";
+
+        softsasertion.assertEqual(CheckParagraph,"True",message);
+
+    }
 
 }

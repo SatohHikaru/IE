@@ -1,6 +1,5 @@
 package Page;
 
-import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import org.openqa.selenium.By;
 
@@ -21,13 +20,6 @@ public class PendingPage extends BasePage {
         //Switch focus when have new tab opened
         switchFocusNewTab();
 
-        ExtentHTMLReporter("Test Select Info in Pending Page","Select info in Pending Page");
-
-        if(driver.findElement(CheckTitleXpath).getText().equals("Life Application for DC")){
-            logger.log(Status.PASS,"Select Info Successfully");
-        }else{
-            logger.log(Status.FAIL,"Fail to Select Info In Pending Page");
-        }
     }
 
 }

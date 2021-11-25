@@ -1,6 +1,6 @@
 [
   {
-    "userName": "quangtestauto1",
+    "userName": "quangtestauto",
     "password": "123Quang!",
     "firstName": "Vinh Quang",
     "middleName": "Van",
@@ -11,7 +11,6 @@
     "Month": "10",
     "Day": "9",
     "Year": "99"
-
   }
 
 ]

@@ -1,20 +1,9 @@
 package TestCase;
 
-import Page.*;
-import Helper.*;
 import org.testng.annotations.Test;
-
 import java.io.IOException;
 
-import static Helper.Helper.getDataFromJsonFile;
-
 public class TestRun extends BaseTest {
-
-    private static Helper helper = new Helper();
-    private static LoginPage loginPage = new LoginPage();
-    private static BasePage basepage = new BasePage();
-    private static PendingPage pendingpage = new PendingPage();
-    private static PersionalInfomationPage persionalinfomationpage = new PersionalInfomationPage();
 
     @Test
     void popupPDFImageTestcase() throws IOException {
@@ -23,13 +12,19 @@ public class TestRun extends BaseTest {
         basepage.enterMainPage();
 
         //LoginPage To page
-        loginPage.loginFunction(getDataFromJsonFile("User.json", "quangtestauto1"));
+        pageHelper.ExtentHTMLReporter("Test Login","Login to Pending list Page");
+        loginPage.loginFunction(pageHelper.getDataFromJsonFile("User.json", "quangtestauto"));
+        logHTMLByURL("https://applicintweb.com/ExamRightTrunk/PendingList.aspx?exp=");
 
-//        //Create Function in Pending page
-//        pendingpage.createNewFunction();
-//
-//        //Fill information into inputs
-//        persionalinfomationpage.fillInfoFunction(getDataFromJsonFile("User.json", "quangtestauto"));
+        //Create Function in Pending page
+        pageHelper.ExtentHTMLReporter("Test Select Info in Pending Page","Select info in Pending Page");
+        pendingpage.createNewFunction();
+        logHTMLByText("//*[@id=\"td-app-name\"]","Life Application for DC");
+
+        //Fill information into inputs
+        pageHelper.ExtentHTMLReporter("Test Popup PDF Image","Popup PDF Image is displayed");
+        persionalinfomationpage.fillInfoFunction(pageHelper.getDataFromJsonFile("User.json", "quangtestauto"));
+        logHTMLByDisplay("//*[@id=\"disableDiv\"]");
     }
 
 }

@@ -21,8 +21,10 @@ public class BaseTest extends BasePage {
 
     @AfterTest
     public static void close(){
+
         extent.flush();
-        driver.close();
+        driver.quit();
+
     }
 
 }
