@@ -1,6 +1,6 @@
 package Page;
 
-import com.aventstack.extentreports.Status;
+import static Helper.SetupHelper.*;
 import org.openqa.selenium.By;
 
 public class PendingPage extends BasePage {

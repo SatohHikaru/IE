@@ -1,7 +1,7 @@
 package Page;
 
 import Model.UserModel;
-import com.aventstack.extentreports.Status;
+import static Helper.SetupHelper.*;
 import org.openqa.selenium.By;
 
 public class PersionalInfomationPage extends BasePage{
