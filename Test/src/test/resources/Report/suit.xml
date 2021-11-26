@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Smoke Test" thread-count="2" parallel="classes">
+    <listeners>
+    </listeners>
+
+    <parameter name="AdminData" value="Admin" />
+    <parameter name="GustData" value="Gust" />
+
+    <test name="smoke test">
+        <parameter name="recordVideo" value="false"/>
+        <classes>
+            <class name="TestCase.TestRun"/>
+        </classes>
+    </test>
+
+</suite>

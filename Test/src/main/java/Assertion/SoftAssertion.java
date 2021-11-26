@@ -1,21 +1,20 @@
 package Assertion;
-import Page.BasePage;
+
+import Helper.ExtendLogHtmlHelper;
+import Setup.Setup;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
-
 import java.io.IOException;
 
-import static Page.BasePage.pageHelper;
-
-public class SoftAssertion {
+public class SoftAssertion extends Setup {
 
     public static void assertEqual(String actual, String expected, String message) throws IOException {
 
         if(actual.equalsIgnoreCase(expected)){
-            BasePage.logger.log(Status.PASS,message);
+            logger.log(Status.PASS,message);
         }else {
            // BasePage.logger.log(Status.FAIL,message);
-            BasePage.logger.fail(message, MediaEntityBuilder.createScreenCaptureFromPath(pageHelper.captureScreen("Login Fail")).build());
+            logger.fail(message, MediaEntityBuilder.createScreenCaptureFromPath(ExtendLogHtmlHelper.captureScreen("Login Fail")).build());
         }
 
     }
