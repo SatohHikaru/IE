@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd"><suite name="All Test Suite"><test verbose="2" preserve-order="true" name="C:/Users/NVVinh/Desktop/Auto Test Code/IE/Test"><classes><class name="TestCase.TestRun"><methods><include name="popupPDFImageTestcase"/></methods></class></classes></test></suite>
