@@ -23,6 +23,7 @@ public class BaseTest extends BasePage {
     public static void close(){
         extent.flush();
         driver.quit();
+        //test
     }
 
 }
